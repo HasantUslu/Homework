@@ -1,0 +1,55 @@
+#include<stdio.h>
+int binary(int arr[],int find,int bottom,int top){
+	
+	while (bottom <= top) {
+        int mid = bottom + (top - bottom) / 2;
+		
+        if (arr[mid] == find)
+            return mid ;
+
+        
+        if (arr[mid] > find)
+            top = mid - 1;
+
+        
+        else
+            bottom = mid + 1;
+   }
+   return -1;
+}
+
+void bubble(int arr[],int x){
+	int i,j,temp;
+	for(i=0;i<x-i;i++){
+		for(j=0;j<(x-i)-1;j++){
+			if(arr[j]>arr[j+1]){
+				temp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
+			}
+		}
+	}
+}
+
+int main(){
+	
+	int dizi[]={4,8,3,84,47,76,9,24,68};
+	int i=0;
+	while(dizi[i]) i++;
+	//Binary Search kullanılabilmesi için dizi küçükten büyüğe sıralanmalıdır
+	
+	bubble(dizi,i);
+	//{3,4,8,9,24,47,68,76,84}
+	printf("Aranacak sayiyi giriniz:");
+	int find;
+	scanf("%d",&find);
+	
+	
+	if (binary(dizi,find,0,i) == -1){
+		printf("Aranan eleman dizide bulunamadi!");
+	}
+    else{
+    	printf("%d aranan sayisi dizinin %d. indeksindedir",find,binary(dizi,find,0,i));
+	}
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include<stdio.h>
+
+int linear(int arr[],int x,int find){
+	int i=0;
+	while(i<x){
+		if(find==arr[i]){
+			
+			return i;
+		}
+		i++;
+	}
+	return -1;
+}
+
+int main(){
+	
+	printf("Olusturulacak dizi boyutu giriniz:");
+	int x,i=0,find;
+	scanf("%d", &x);
+	int arr[x];
+	
+	printf("Sirasi ile dizi elemanlarini giriniz\n");
+	
+	for(i;i<x;i++) {
+		printf("%d. Eleman: ",i+1);
+		scanf("%d", &arr[i]);
+	}
+
+	printf("Arancak elemani giriniz:");
+	scanf("%d",&find);
+	
+	if(linear(arr,x,find) == -1){
+		printf("Aranan eleman dizide bulunamadi!");
+	}else{
+		printf("%d aranan sayisi dizinin %d. elemanidir",find,linear(arr,x,find)+1);
+	}
+	
+	return 0;
+}

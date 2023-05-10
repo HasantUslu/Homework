@@ -1,0 +1,85 @@
+#include <stdio.h>
+#define MAX 50
+
+int last = -1;
+
+void goruntule(int dizi[]) {
+    if(last == -1) {
+        printf("Kuyruk bos!\n");
+        return;
+    }
+    printf("\nKuyruk: |");
+    for(int i = 0; i <= last; i++) {
+        printf("<-%d ",dizi[i]);
+    }
+    printf("\n");
+}
+
+void ekle(int dizi[]) {
+    if(last == MAX - 1) {
+        printf("Kuyruk dolu!\n");
+        return;
+    }
+    int add;
+    printf("Eklemek istediginiz degeri giriniz: ");
+    scanf("%d", &add);
+    last++;
+    dizi[last] = add;
+    
+    goruntule(dizi);
+}
+
+void sil(int dizi[]) {
+    if(last == -1) {
+        printf("Kuyruk bos!\n");
+        return;
+    }
+    int sil;
+    printf("Silinecek elemani giriniz: ");
+    scanf("%d", &sil);
+    int i;
+    for(i = 0; i <= last; i++) {
+        if(dizi[i] == sil) {
+            break;
+        }
+    }
+    if(i > last) {
+        printf("Eleman bulunamadi!\n");
+        return;
+    }
+    for(i; i<last ; i++) {
+        dizi[i] = dizi[i+1];
+    }
+    last--;
+    printf("Eleman silindi.\n");
+    
+    goruntule(dizi);
+}
+
+int main() {
+    int islem=0 , dizi[MAX];
+    
+    while(islem != 4) {
+        printf("\nLutfen asagidaki islemlerden birini seciniz:\n1.Ekleme\n2.Silme\n3.Goruntule\n4.Cikis\n");
+        scanf("%d", &islem);
+
+        switch(islem) {
+            case 1:
+                ekle(dizi);
+                break;
+            case 2:
+                sil(dizi);
+                break;
+            case 3:
+                goruntule(dizi);
+                break;
+            case 4:
+                printf("Cikis yapildi.");
+                break;
+            default:
+            	printf("Gecersiz giris tekrar deneyiniz.");
+            	break;
+		}
+	}
+	return 0;
+}
